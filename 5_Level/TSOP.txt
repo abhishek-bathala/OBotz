@@ -1,0 +1,8 @@
+Wireless IR Remote connection
+PB2 on Uniko Dvi in the input for the IR Remote - TSOP is connected
+Page31 from Level 4 book - Infrared Wireles Remote HEX codes and keys
+Since TSOP has 16 bits of address and 16 bits of Data, total 32 bits are recieved
+besides 32 bits of address and data, Uniko Dvi also recieves 'start of signal' (2 bits)
+and 'end of signal' (1 bit) which has to be discarded while displaying the values on the serial monitor
+This we do by initialising bit_position = -2, and this will only read 32 bits of address and data.
+When TSOP does not recieve data, PB2 will be high, and when TSOP receives data, PB2 pin will be LOW. 
