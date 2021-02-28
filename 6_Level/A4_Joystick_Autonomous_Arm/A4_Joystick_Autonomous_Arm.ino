@@ -26,6 +26,10 @@ int c = 0;
 int d = 0;
 int pressed = 0;
 
+void getJoystickPosition
+{
+  
+}
 void compare(int x, int y)
 {
   if(y > 800){ //up
@@ -48,16 +52,6 @@ void compare(int x, int y)
     d++;
     clkstepper();
   }
-  if(PINB & 0x01){
-    pressed++;
-    if(pressed == 1){
-      angle3(0);
-    }
-    else if (pressed == 2){
-      angle3(60);
-      pressed = 0;
-    }
-  }
 }
 
 int main(void)
@@ -75,18 +69,10 @@ int main(void)
   
   while(true)
   {
-    ADMUX = 0x42;
-    ADCSRA = 0xC7;
-    while(CHECK_BIT(ADCSRA, ADSC)){
-      y = ADCW;
+    if(PINB & 0x01){
+      pressed++;
     }
-
-    ADMUX = 0x43;
-    ADCSRA = 0xC7;
-    while(CHECK_BIT(ADCSRA, ADSC)){
-      x = ADCW;
-    }
-    
+    if(pressed 
     Serial.print("x: ");
     Serial.print(x);
     Serial.print(" y: ");
