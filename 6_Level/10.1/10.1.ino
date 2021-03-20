@@ -19,10 +19,10 @@ ISR (TIMER1_COMPA_vect)
 {
   count++;
   if(count <=count_angle){
-    SET_BIT(PORTB, 4);
+    SET_BIT(PORTB, 7);
   }
   else if ((count > count_angle) && (count < 1818)){
-    CLEAR_BIT(PORTB, 4);
+    CLEAR_BIT(PORTB, 7);
   }
   else if(count >= 1818){
     count = 0;

@@ -26,15 +26,15 @@ long keycode = 0;
 //stepper motor variables
 int c = 0;
 int d = 0;
-int base = 60;
-int elbow = 60;
-int finger = 60;
 
 //servo variables
 int count = 0;
 int count_angle1 = 0;
 int count_angle2 = 0;
 int count_angle3 = 0;
+int base = 60;
+int elbow = 60;
+int finger = 60;
 
 //timer variables
 int timervalue = 0;
