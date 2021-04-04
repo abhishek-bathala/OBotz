@@ -1,4 +1,4 @@
-#include <obotz_level6_stepper_motor.h>
+#include <obotz_level6_servo_motor.h>
 #include <LCD.h>
 #include <avr/io.h>
 #include <util/delay.h>
@@ -15,10 +15,18 @@ const float c3 = 0.000000085663516;
 double R2, t;
 double t_tens, t_decimal;
 String t_string;
-int c, d;
+int count = 0;
+int count_angle1 = 0, count_angle2 = 0, count_angle3 = 0;
 int main(void)
 {
   DDRD = 0xFF;
+  DDRC = 0xFF;
+  DDRB = 0xFF;
+  OCR1A = 21;
+  TCCR1A = 0x00;
+  TCCR1B = 0x0A;
+  TIMSK1 = 0x02;
+  SREG = 0x80;
   Serial.begin(2000000);
   LCD lcd;
   lcd.init();
@@ -33,15 +41,18 @@ int main(void)
       Serial.println(t);
       lcd.cmd(0x01);
       lcd.line1(0);
-      lcd.showvalue(t);
-      if(t > 23){
-        c++;
-        antistepper();
+      //lcd.showvalue(t);
+      if(t > 27){
+        angle3(90);
+        PORTD = 0x01;
+        lcd.string("Temp High");
       }
-      else if(t < 23){
-        d++;
-        clkstepper();
+      else{
+        angle3(0);
+        PORTD = 0x00;
+        lcd.string("Temp Low");
       }
+
       _delay_ms(200);
     }
   }
