@@ -1,11 +1,18 @@
+#include <obotz_level6_stepper_motor.h>
+
 #include <avr/io.h>
 #include <util/delay.h>
-#include <LCD.h>
+#include <avr/interrupt.h>
+
+int num[] = {0xF6, 0x60, 0xD5, 0xF1, 0x63, 0xB3, 0xB7, 0xE0, 0xF7, 0xF3, 0x3D, 0x37, 0x96, 0x75, 0x66, 0x90};
 
 #define BITN(BIT_NUM)               (0x01 << (BIT_NUM))
 #define SET_BIT(PORT, BIT_NUM)      ((PORT) |= (BITN(BIT_NUM)))
 #define CHECK_BIT(PORT, BIT_NUM)    ((PORT) & (BITN(BIT_NUM)))
 #define CLEAR_BIT(PORT, BIT_NUM)    ((PORT) &= (~(BITN(BIT_NUM))))
+int c = 0, d = 0;
+int pinstate, count;
+double distance;
 
 void trigger()
 {
@@ -18,12 +25,9 @@ void trigger()
 
 int main(void)
 {
-  int count;
-  double distance;
-  Serial.begin(9600);
+  Serial.begin(2000000);
+  DDRD = 0xFF;
   DDRB = 0x01;
-  int pinstate;
-
   while(true){
     trigger();
     while(CHECK_BIT(PINB, 1)){
@@ -36,9 +40,17 @@ int main(void)
       count = TCNT1;
       distance = (count * 0.008575);
       Serial.println(distance);
+      if(distance < 5){
+        c++;
+        antistepper();
+      }
+      else{
+        d++;
+        clkstepper();
+      }
       pinstate = 0;
       TCNT1 = 0;
-      _delay_ms(250);
+      _delay_ms(150);
     }
   }
 }

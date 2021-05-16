@@ -1,11 +1,16 @@
+#include <LCD.h>
+#include <obotz_level6_stepper_motor.h>
 #include <avr/io.h>
 #include <util/delay.h>
-#include <LCD.h>
+#include <avr/interrupt.h>
 
 #define BITN(BIT_NUM)               (0x01 << (BIT_NUM))
 #define SET_BIT(PORT, BIT_NUM)      ((PORT) |= (BITN(BIT_NUM)))
 #define CHECK_BIT(PORT, BIT_NUM)    ((PORT) & (BITN(BIT_NUM)))
 #define CLEAR_BIT(PORT, BIT_NUM)    ((PORT) &= (~(BITN(BIT_NUM))))
+int c = 0, d = 0;
+int pinstate, count;
+double distance;
 
 void trigger()
 {
@@ -18,12 +23,11 @@ void trigger()
 
 int main(void)
 {
-  int count;
-  double distance;
-  Serial.begin(9600);
+  Serial.begin(2000000);
+  LCD lcd;
+  lcd.init();
+  DDRD = 0xFF;
   DDRB = 0x01;
-  int pinstate;
-
   while(true){
     trigger();
     while(CHECK_BIT(PINB, 1)){
@@ -35,10 +39,21 @@ int main(void)
       TCCR1B = 0x00;
       count = TCNT1;
       distance = (count * 0.008575);
+      distance = distance;
+      lcd.cmd(0x01);
+      lcd.line1(8);
+      lcd.showvalue(distance);
+      lcd.string(".");
+      distance /= 100;
+      distance *= 100;
+      lcd.showvalue(distance);
+      lcd.string("cm");
+      lcd.line1(0);
+      lcd.string("distance:");
       Serial.println(distance);
       pinstate = 0;
       TCNT1 = 0;
-      _delay_ms(250);
+      _delay_ms(200);
     }
   }
 }

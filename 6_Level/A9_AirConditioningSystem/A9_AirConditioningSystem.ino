@@ -60,7 +60,7 @@ void changeTemperature()
 {
   if (tempToSet < currentTemp) {
     while(tempToSet < currentTemp){
-      PORTD = 0x08;
+      PORTD = 0xFF;
       checkTemperature();
     }
   }
