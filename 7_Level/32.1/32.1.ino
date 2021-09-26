@@ -93,49 +93,21 @@ int main(void)
     for(int i = 0; i < 20; i++)
     {
       right_fore++;
-      left_hind--;
       convert();
     }
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 20; i++)
     {
-      right_hind--;
       left_fore++;
       convert();
     }
     for(int i = 0; i < 20; i++)
     {
       right_fore--;
-      left_hind++;
-      convert();
-    }
-    for(int i = 0; i < 10; i++)
-    {
-      right_hind++;
-      left_fore--;
       convert();
     }
     for(int i = 0; i < 20; i++)
     {
-      right_hind++;
       left_fore--;
-      convert();
-    }
-    for(int i = 0; i < 10; i++)
-    {
-      right_fore--;
-      left_hind++;
-      convert();
-    }
-    for(int i = 0; i < 20; i++)
-    {
-      right_hind--;
-      left_fore++;
-      convert();
-    }
-    for(int i = 0; i < 10; i++)
-    {
-      right_fore++;
-      left_hind--;
       convert();
     }
   }

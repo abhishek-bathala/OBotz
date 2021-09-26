@@ -73,8 +73,8 @@ right_fore = 90;
 left_fore = 90;
 right_hind = 90;
 left_hind = 90;
-  //right_hand = 40;
-  //left_hand = 140;
+tail = 90;
+neck = 90;
 }
 
 int main(void)
@@ -93,49 +93,21 @@ int main(void)
     for(int i = 0; i < 20; i++)
     {
       right_fore++;
-      left_hind--;
       convert();
     }
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 20; i++)
     {
-      right_hind--;
       left_fore++;
       convert();
     }
     for(int i = 0; i < 20; i++)
     {
       right_fore--;
-      left_hind++;
-      convert();
-    }
-    for(int i = 0; i < 10; i++)
-    {
-      right_hind++;
-      left_fore--;
       convert();
     }
     for(int i = 0; i < 20; i++)
     {
-      right_hind++;
       left_fore--;
-      convert();
-    }
-    for(int i = 0; i < 10; i++)
-    {
-      right_fore--;
-      left_hind++;
-      convert();
-    }
-    for(int i = 0; i < 20; i++)
-    {
-      right_hind--;
-      left_fore++;
-      convert();
-    }
-    for(int i = 0; i < 10; i++)
-    {
-      right_fore++;
-      left_hind--;
       convert();
     }
   }
