@@ -18,10 +18,6 @@ int count_angle2 = 0;
 int count_angle3 = 0;
 int count_angle4 = 0;
 
-
-int x = 0;
-int y = 0;
-
 void convert()
 {
   count_angle1 = right_fore+ 46;

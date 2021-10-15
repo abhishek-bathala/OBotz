@@ -33,7 +33,7 @@ void convert()
   count_angle5 = left_hand + 46;
   count_angle6 = right_hand + 46;
   count_angle7 = neck + 46;
-  _delay_us(500);
+  _delay_us(100);
 }
 
 ISR(TIMER1_COMPA_vect)

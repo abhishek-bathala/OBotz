@@ -24,7 +24,7 @@ int y = 0;
 
 void convert()
 {
-  count_angle1 = right_fore+ 46;
+  count_angle1 = right_fore + 46;
   count_angle2 = right_hind + 46;
   count_angle3 = left_fore + 46;
   count_angle4 = left_hind + 46;

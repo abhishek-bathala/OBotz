@@ -1,3 +1,7 @@
+/* Abhishek Bathala
+ * Level 7 Final Test
+ * Practical Question #1
+ */
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -43,20 +47,21 @@ int main(void)
   TCCR1B = 0x0A;
   TIMSK1 = 0x02;
   SREG = 0x80;
-  Serial.begin(2000000);
+  //Serial.begin(2000000);
   while (1) {
+    //getting y axis value from joystick
     ADMUX = 0x46;
     ADCSRA = 0xC7;
     while ((ADCSRA & (1 << ADSC)));
     y = ADCW;
 
-    Serial.println(y);
+    //Serial.println(y);
     if (y > 800) { //joystick up
-      angle1 = 140;
+      angle1 = 140; //move arm up
       convert();
     }
     if (y > 450 && y < 550) { //joystick center/released
-      angle1 = 90;
+      angle1 = 90; //move arm back down
       convert();
     }
   }

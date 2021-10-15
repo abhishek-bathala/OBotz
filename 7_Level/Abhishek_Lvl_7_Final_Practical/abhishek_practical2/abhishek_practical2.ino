@@ -1,3 +1,7 @@
+/* Abhishek Bathala
+ * Level 7 Final Test
+ * Practical Question #2
+ */
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -38,22 +42,24 @@ int main(void)
   TCCR1B = 0x0A;
   TIMSK1 = 0x02;
   SREG = 0x80;
-  Serial.begin(2000000);
+  //Serial.begin(2000000);
   while (1) {
+    //getting the x axis value from joystick
     ADMUX = 0x46;
     ADCSRA = 0xC7;
     while ((ADCSRA & (1 << ADSC)));
     x = ADCW;
 
+    //getting the y axis value from joystick
     ADMUX = 0x47;
     ADCSRA = 0xC7;
     while ((ADCSRA & (1 << ADSC)));
     y = ADCW;
 
-    Serial.print(x);
-    Serial.println(y);
-    if (y > 900) { //joystick up
-      for(int i = 0; i < 200; i++){ //3
+    //Serial.print(x);
+    //Serial.println(y);
+    if (y > 900) { //joystick up (instead of if switch is pressed)
+      for(int i = 0; i < 200; i++){ //display 3 on dot matrix
         PORTC = 0x0E;
         PORTB = 0xFE;
         _delay_ms(1);
@@ -70,7 +76,7 @@ int main(void)
         PORTB = 0xEF;
         _delay_ms(1);
       }
-      for(int i = 0; i < 200; i++){ //2
+      for(int i = 0; i < 200; i++){ //display 2 on dot matrix
         PORTC = 0x0E;
         PORTB = 0xFE;
         _delay_ms(1);
@@ -87,11 +93,11 @@ int main(void)
         PORTB = 0xEF;
         _delay_ms(1);
       }
-      PORTC = 0x04; //1
+      PORTC = 0x04; // display 1 on dot matrix
       PORTB = 0xE0;
       _delay_ms(1000);
     }
-    if (x > 450 && x < 550) {
+    if (x > 450 && x < 550) { //if joystick is in middle/default position, clear the dot matrix display
       PORTC = 0x00;
       PORTD = 0x00;
     }
