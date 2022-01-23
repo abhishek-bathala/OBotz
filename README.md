@@ -1,5 +1,5 @@
 # OBotz
-My OBotz programs from level 5 onwards. They are to be used with Arduino Nano and ATMega boards (ATMega 32, 324PA).
+My OBotz programs from level 5 onwards. They are to be used with Arduino Nano and ATMega boards (ATMega 32, 324PA, 328).
 
 
 All of my videos can be found in the following Google Drive folder:
