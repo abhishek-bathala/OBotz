@@ -35,46 +35,46 @@ void angle3 (int a)//claw servo
 ISR (TIMER1_COMPA_vect)
 {
   count++;
-  if(count <=count_angle1){
+  if (count <= count_angle1) {
     SET_BIT(PORTB, 5);
   }
-  else if ((count > count_angle1) && (count < 1818)){
+  else if ((count > count_angle1) && (count < 1818)) {
     CLEAR_BIT(PORTB, 5);
   }
-  else if(count >= 1818){
+  else if (count >= 1818) {
     count = 0;
   }
-  if (count <= count_angle2){
+  if (count <= count_angle2) {
     SET_BIT(PORTB, 6);
   }
-  else if ((count > count_angle2) && (count < 1818)){
+  else if ((count > count_angle2) && (count < 1818)) {
     CLEAR_BIT(PORTB, 6);
   }
-  else if(count >= 1818){
+  else if (count >= 1818) {
     count = 0;
   }
-  if (count <= count_angle3){
+  if (count <= count_angle3) {
     SET_BIT(PORTB, 7);
   }
-  else if ((count > count_angle3) && (count < 1818)){
+  else if ((count > count_angle3) && (count < 1818)) {
     CLEAR_BIT(PORTB, 7);
   }
-  else if(count >= 1818){
+  else if (count >= 1818) {
     count = 0;
   }
 }
 void clkstepper() //stepper motor clockwise
 {
-  if(d==1){
+  if (d == 1) {
     PORTD = 0b01110000;
-    }
-  if(d==2){
+  }
+  if (d == 2) {
     PORTD = 0b10110000;
-    }
-  if(d==3){
+  }
+  if (d == 3) {
     PORTD = 0b11010000;
-    }
-  if(d==4){
+  }
+  if (d == 4) {
     PORTD = 0b11100000;
     d = 0;
   }
@@ -82,16 +82,16 @@ void clkstepper() //stepper motor clockwise
 
 void antistepper()  //stepper motor anticlockwise
 {
-  if(c==1){
+  if (c == 1) {
     PORTD = 0b11100000;
-    }
-  if(c==2){
+  }
+  if (c == 2) {
     PORTD = 0b11010000;
-    }
-  if(c==3){
+  }
+  if (c == 3) {
     PORTD = 0b10110000;
-    }
-  if(c==4){
+  }
+  if (c == 4) {
     PORTD = 0b11100000;
     c = 0;
   }
@@ -107,7 +107,7 @@ int main(void)
   TIMSK1 = 0x02;  //interrupt for timer1
   SREG = 0x80;    //Enable global interrupt
 
-  while(true)
+  while (true)
   {
     angle1(30);
     _delay_ms(200);
@@ -117,7 +117,7 @@ int main(void)
     _delay_ms(200);
     angle3(10);
     _delay_ms(200);
-    for(int i = 0; i<12; i++){
+    for (int i = 0; i < 12; i++) {
       c++;
       antistepper();
       _delay_ms(50);
@@ -129,7 +129,7 @@ int main(void)
     _delay_ms(200);
     angle3(80);
     _delay_ms(50);
-    for(int i = 0; i<12; i++){
+    for (int i = 0; i < 12; i++) {
       d++;
       clkstepper();
       _delay_ms(50);
