@@ -8,15 +8,12 @@
 
 int main (void)
 {
-  DDRD = 0xFF;
   DDRB = 0xFF;
 
   while(true){
     PORTB = 0x60;
-    _delay_ms(200);
-    _delay_ms(200);
+    _delay_ms(400);
     PORTB = 0x00;
-    _delay_ms(200);
-    _delay_ms(200);
+    _delay_ms(400);
   }
 }
